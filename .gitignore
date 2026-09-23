@@ -1,2 +1,6 @@
 .DS_STORE
+.env
+
+.cache/
 build/
+tests/

@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <cstdlib>
 
 #include <dotenv/dotenv.hpp>
 #include <dotenv/detail/util.hpp>
@@ -45,10 +46,13 @@ namespace sorubu::dotenv {
     std::optional<std::string> Env::get(std::string_view key) const {
         auto it = env_map.find(std::string(key));
 
-        if (it == env_map.end()) {
-            return std::nullopt;
+        if (it != env_map.end()) {
+            return it->second;
+        }
+        else if (const char* env = std::getenv(std::string(key).c_str())) {
+            return env;
         }
 
-        return it->second;
+        return std::nullopt;
     }
 }

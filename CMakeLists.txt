@@ -6,6 +6,8 @@ project(dotenv
     LANGUAGES CXX
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_library(${PROJECT_NAME}
     src/dotenv.cpp
 )
@@ -59,4 +61,15 @@ install(
         ${CMAKE_CURRENT_BINARY_DIR}/dotenvConfig.cmake
     DESTINATION
         ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+# Test Configuration
+
+add_executable(${PROJECT_NAME}_test
+    tests/main.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}_test
+    PRIVATE
+        ${PROJECT_NAME}
 )
