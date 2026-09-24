@@ -65,9 +65,9 @@ install(
 
 # Test Configuration
 
-option(BUILD_TESTING "Build tests" ON)
+option(DOTENV_BUILD_TEST "Build tests" ON)
 
-if (BUILD_TESTING)
+if (DOTENV_BUILD_TESTS)
     add_executable(${PROJECT_NAME}_test
         tests/main.cpp
     )
