@@ -12,7 +12,7 @@ namespace sorubu::dotenv {
     Env::Env(std::string_view filepath) {
         std::ifstream file{std::string(filepath)};
         if (!file.is_open()) {
-            throw std::runtime_error(std::string("Failed to open ").append(filepath).append(" file"));
+            return;
         }
 
         std::string line;
