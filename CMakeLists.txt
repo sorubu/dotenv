@@ -65,11 +65,15 @@ install(
 
 # Test Configuration
 
-add_executable(${PROJECT_NAME}_test
-    tests/main.cpp
-)
+option(BUILD_TESTING "Build tests" ON)
 
-target_link_libraries(${PROJECT_NAME}_test
-    PRIVATE
-        ${PROJECT_NAME}
-)
+if (BUILD_TESTING)
+    add_executable(${PROJECT_NAME}_test
+        tests/main.cpp
+    )
+
+    target_link_libraries(${PROJECT_NAME}_test
+        PRIVATE
+            ${PROJECT_NAME}
+    )
+endif()
